@@ -1,78 +1,62 @@
-# Finimize Full-Stack Development Challenge
+# Intro
 
-This repo is intended to be forked and uploaded to your own Github account in
-order to form the submission for the challenge. Once cloned, it will give you a basic server with a React app, so you don't have to spend time writing boilerplate code. Feel free to make any changes you wish - the existing code is purely intended to get you going faster.
+This is my solution to the Finimize coding challenge (https://github.com/finimize/fullstack-dev-challenge).
 
-## Run Instructions
+//Screenshot
 
-To run the app, `cd` into the project root directory and run `yarn install` & `yarn start`
-(install Yarn [here](https://yarnpkg.com/en/docs/install)).
 
-Depending on your environment, you might need to install concurrently / Typescript globally.
+# Run Instructions
 
-There is one basic test written in the client, which you can run by performing
-`cd client` and then `yarn test`. If you want to add new client tests you can use Jest.
+To run it locally :
 
-Mocha has been installed on the server to allow you to create server tests if you wish,
-although none have been written yet.
+1. Clone this repo on your machine
 
-## The challenge
+2. Cd into the newly created folder and run `yarn install`
 
-Create a web-app that shows how much you can expect to make from your savings over time.
+3. As the server and client are setup separately, you need to cd into both folder ans run `yarn install` as well
 
-The app must satisfy the following Acceptance Criteria (ACs):
+4. To run the server tests from the root level : `yarn run test-server`
 
-* It should allow the user to vary the initial savings amount, monthly deposit and interest rate through the UI
-* It should display how much the user's initial savings amount will be worth over the next 50 years. This should assume that the monthly amount is paid in each month, and the value rises with the interest rate supplied. There are resources online about calculating compound interest totals - e.g. [Wikipedia](https://en.wikipedia.org/wiki/Compound_interest#Investing:_monthly_deposits)
-* All calculations must take place server-side, and all monthly projection data should be returned via an endpoint
-* The calculations must be triggered onChange of any input, to give live feedback on the input data. The performance (try the slider) should be reasonable.
+5. To run the client tests from the root level : `yarn test`
 
-### Our Guidance
+6. To start both servers : `yarn start`
 
-The challenge should not take any more than 2-3 hours. You do not need to complete the challenge in one go.
+# The challenge
 
-These are some qualities we value:
- * Well-modularised, robust and clearly-written code
- * Maintainability. Another team member should be able to easily work with your code after you've finished. 
- * Single Responsibility Principle
- * A well-organised codebase. You should think about how your codebase might grow as the project becomes more complex
+I found this challenge interesting as it allows to display coding skills accross the full stack.  I completed it in 3h.
 
-The UI has been started, as well as an example endpoint on the server. How you connect these and structure logic is up to you! Feel free to make changes to any of the code provided (including the UI) if you wish.
+## Backend (server)
+I started the backend first and I spent 2/3 of the time allocated on it.
 
-We have chosen to include a basic design system on the client, to give you an idea of how we like to build UIs. For this challenge we have used [Chakra JS](https://chakra-ui.com/docs/getting-started). If you're not familiar with such systems, hopefully this won't be too steep a learning curve. The docs will give you details of all the components/props you can use, but as a head-start, you can pass in styling props to the components including margins/padding etc like this:
+I decided to design the express API following a resemblance of the MVC pattern. 
+The views part is the react frontend you can find in the client. 
+The controller is used mostly to validate the data received before passing it on to the model.
+The model do not connect to any databse but simply perform the calculations needed.
 
-```
-// This produces a Box (styled div) with a top margin of 2, padding of 3 and a black background colour.
-// Colours and spacing properties are defined in `themes/index.tsx`
-<Box mt={2} p={3} bg='black'>
-```
+There was no need for multiple routers but I created two anyway (main router and sub router) to demonstrate the possibilities of the code at a larger scale.
 
-Although the API might be relatively straightforward, please try and write the API code as if you were building something more complex. We would like to gain an idea of how you would go about structuring API code.
+There is a small amount of error handling for the basic error codes. The error handling is one thing that could be improved in this project, but I lacked time.
 
-Other than that, feel free to take the challenge in any directions you feel best showcase your strengths!
+There are unit tests and integration tests. I used Mocha, Chai and Supertest for those.
+I decided to put the test files in a common specs folder at the root of the server/ folder, but we could of course place them in the folders of the functions they test.
 
-**Once complete**, please drop us a brief note (either an email, or in the readme somewhere) explaining:
-* How you approached the challenge
-* What bits of your solution you like
-* What bits of your solution you’d like to improve upon
+## Frontend (client)
 
-Any images/gifs of the finished product would be helpful too!
+I did the frontend last which meant I didn't have much time left so had to cut corners. 
+The UI is quite simple and absolutely not responsive. Although it is encouraged to code for mobile first, I have a seriously annoying pixel issue with my laptop screen which prevents me from seeing properly on a mobile view, it is really bugging me...
+I think the UI could be improved in terms of styling and accessibility as well (I initially wanted to add navigation of the inputs through keyboard for instance but didn't have time).
+We could also display a welcome message to the user explaining the empty graph and what to do to have data displayed (fill all the form inputs).
 
-### Tooling
+I left the chakra UI package in with what was given as a template to start, but then carried on without it. I added axios and styled component as dependecies.
 
-The frontend contains some tooling you might be familiar with
+We could refactor some components to reduce their size (separate component for form inputs ?).
 
-#### Typescript
+The useForm hook could be refactored into 2 to respect the single responsibility principle (one hook to hold the state and handle change on the form inputs and one for the graph data query).
 
-If you like to use Typescript in your workflow, you should get any client warnings/errors appear in your terminal after running `yarn start`.
+I have only added a few tests for some of the components. They only check if the component is rendering, however we could add some jest tests to check the form interactions, as well as the conditional display of the summary. We could also add some end to end tests.
 
-You can also run the server types using `yarn types`.
+I have decided not to use global state as I didn't feel like there was a need for in in a project that small. We could argue that it would have been interesting to set it up so that we have less prop drilling, although it is only one level. I would have probably used the Context Api as toold like Redux have to much boilerplate.
 
-We believe strong TS typing will make your code much more robust.
 
-#### Prettier
 
-We believe Prettier makes your life easier! There is an example .prettierrc included in the `frontend` directory - feel free to tweak the settings if you'd prefer.
-
-You might need to give your IDE a nudge to pick the settings up - [here's an example](https://stackoverflow.com/a/58669550/4388938) of how to do that with VS Code
 

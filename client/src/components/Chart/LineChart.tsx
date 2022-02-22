@@ -1,7 +1,11 @@
-import { ChartLegendOptions, ChartOptions } from 'chart.js'
+//React
 import React from 'react'
+//Chart
+import { ChartLegendOptions, ChartOptions } from 'chart.js'
 import { Line } from 'react-chartjs-2'
-import theme from '../theme'
+//Style
+import theme from '../../theme'
+import { StyledLineChart } from './styles'
 
 type Props = {
     xAxisData: number[] | string[]
@@ -17,6 +21,7 @@ const LineChart = ({ xAxisData, yAxisData, title, xLabel, yLabel }: Props) => {
     }
 
     const options: ChartOptions = {
+        responsive: true,
         title: {
             display: !!title,
             text: title,
@@ -40,20 +45,22 @@ const LineChart = ({ xAxisData, yAxisData, title, xLabel, yLabel }: Props) => {
     }
 
     return (
-        <Line
-            data={{
-                labels: xAxisData,
-                datasets: [
-                    {
-                        backgroundColor: theme.colors.blue100,
-                        borderColor: theme.colors.primary,
-                        data: yAxisData,
-                    },
-                ],
-            }}
-            options={options}
-            legend={legendOptions}
-        />
+        <StyledLineChart>
+            <Line
+                data={{
+                    labels: xAxisData,
+                    datasets: [
+                        {
+                            backgroundColor: theme.colors.blue100,
+                            borderColor: theme.colors.primary,
+                            data: yAxisData,
+                        },
+                    ],
+                }}
+                options={options}
+                legend={legendOptions}
+            />
+        </StyledLineChart>
     )
 }
 
