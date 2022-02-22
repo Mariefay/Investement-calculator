@@ -2,7 +2,8 @@
 
 This is my solution to the Finimize coding challenge (https://github.com/finimize/fullstack-dev-challenge).
 
-//Screenshot
+![Screenshot 2022-02-22 at 21 58 56](https://user-images.githubusercontent.com/47692367/155235016-17c4b235-99db-462d-b81f-4aa33ad01554.png)
+
 
 
 # Run Instructions
@@ -47,15 +48,15 @@ The UI is quite simple and absolutely not responsive. Although it is encouraged 
 I think the UI could be improved in terms of styling and accessibility as well (I initially wanted to add navigation of the inputs through keyboard for instance but didn't have time).
 We could also display a welcome message to the user explaining the empty graph and what to do to have data displayed (fill all the form inputs).
 
-I left the chakra UI package in with what was given as a template to start, but then carried on without it. I added axios and styled component as dependecies.
+I left the chakra UI package in with what was given as a template to start, but then carried on without it. I added axios and styled component as dependencies.
 
-We could refactor some components to reduce their size (separate component for form inputs ?).
+We could refactor some components to reduce their size (separate components for form inputs?).
 
 The useForm hook could be refactored into 2 to respect the single responsibility principle (one hook to hold the state and handle change on the form inputs and one for the graph data query).
 
 I have only added a few tests for some of the components. They only check if the component is rendering, however we could add some jest tests to check the form interactions, as well as the conditional display of the summary. We could also add some end to end tests.
 
-I have decided not to use global state as I didn't feel like there was a need for in in a project that small. We could argue that it would have been interesting to set it up so that we have less prop drilling, although it is only one level. I would have probably used the Context Api as toold like Redux have to much boilerplate.
+I have decided not to use global state as I didn't feel like there was a need for it in a project that small. We could argue that it would have been interesting to set it up so that we have less prop drilling, although it is only one level at the moment. I would have probably used the Context Api as tools like Redux have to much boilerplate.
 
 
 
