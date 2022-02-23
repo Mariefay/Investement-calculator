@@ -30,9 +30,9 @@ I found this challenge interesting as it allows to display coding skills accross
 I started the backend first and I spent 2/3 of the time allocated on it.
 
 I decided to design the express API following a resemblance of the MVC pattern. 
-The views part is the react frontend you can find in the client. 
+The views part is the react frontend you can find in the client folder. 
 The controller is used mostly to validate the data received before passing it on to the model.
-The model do not connect to any databse but simply perform the calculations needed.
+The model does not connect to any database but simply perform the calculations needed.
 
 There was no need for multiple routers but I created two anyway (main router and sub router) to demonstrate the possibilities of the code at a larger scale.
 
@@ -44,19 +44,20 @@ I decided to put the test files in a common specs folder at the root of the serv
 ## Frontend (client)
 
 I did the frontend last which meant I didn't have much time left so had to cut corners. 
-The UI is quite simple and absolutely not responsive. Although it is encouraged to code for mobile first, I have a seriously annoying pixel issue with my laptop screen which prevents me from seeing properly on a mobile view, it is really bugging me...
+
+The UI is quite simple and absolutely not responsive. Although it is encouraged to code for mobile first, I have a seriously annoying pixel issue with my laptop screen which prevents me from seeing properly on a mobile view.
 I think the UI could be improved in terms of styling and accessibility as well (I initially wanted to add navigation of the inputs through keyboard for instance but didn't have time).
-We could also display a welcome message to the user explaining the empty graph and what to do to have data displayed (fill all the form inputs).
+We could also display a welcome message to the user explaining what the empty graph is and what to do to have data displayed (fill all the form inputs). We could also add some frontend validation on the inputs.
 
-I left the chakra UI package in with what was given as a template to start, but then carried on without it. I added axios and styled component as dependencies.
+I left the chakra UI package in with what was given as a template to start, but then carried on without it. I added axios and styled-component as dependencies.
 
-We could refactor some components to reduce their size (separate components for form inputs?).
+We could refactor some components to reduce their size (make a separate component for form inputs?).
 
 The useForm hook could be refactored into 2 to respect the single responsibility principle (one hook to hold the state and handle change on the form inputs and one for the graph data query).
 
 I have only added a few tests for some of the components. They only check if the component is rendering, however we could add some jest tests to check the form interactions, as well as the conditional display of the summary. We could also add some end to end tests.
 
-I have decided not to use global state as I didn't feel like there was a need for it in a project that small. We could argue that it would have been interesting to set it up so that we have less prop drilling, although it is only one level at the moment. I would have probably used the Context Api as tools like Redux have to much boilerplate.
+I have decided not to use global state as I didn't feel like there was a need for it in a project that small. We could argue that it would have been interesting to set it up so that we have less prop drilling, although it is only one level at the moment. If I implemented global state I would have probably used the Context Api as tools like Redux have to much boilerplate for a project this size.
 
 
 
