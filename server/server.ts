@@ -15,7 +15,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 app.use(express.json());
-app.use("/api", apiRouter).all("/api", send405Error);
+app.use("/api", apiRouter)
 app.use(sendCustomErrors);
 app.use(handleServerErrors);
 app.all("/*", (req, res, next) => {
