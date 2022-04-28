@@ -19,7 +19,7 @@ app.use("/api", apiRouter)
 app.use(sendCustomErrors);
 app.use(handleServerErrors);
 app.all("/*", (req, res, next) => {
-  res.status(404).send({ msg: "Route Not Found" });
+  send405error()
 });
 
 app.listen(app.get("port"), () => {
